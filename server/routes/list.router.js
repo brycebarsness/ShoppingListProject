@@ -44,7 +44,6 @@ router.get('/', (req, res) => {
 router.put('/buy/:id', (req, res) => {
   let id = req.params.id
   console.log('Purchasing Item number: ', id);
-  
   let queryText = `
   UPDATE "groceries"
   SET "purchased" = true

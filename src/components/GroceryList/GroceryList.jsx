@@ -1,16 +1,11 @@
-import{useState} from 'react';
 import './GroceryList.css';
-function GroceryList(){
+
+function GroceryList({groceryArray}){
     
-    let [groceryArray, setGroceryArray] = useState([]);
 return(
    
     <>
         <h1>Shopping List</h1>
-      
-        <button id = "reset">Reset</button>
-        <button id = "clear">Clear</button>
-      
         {groceryArray.map((grocery) =>(
         <div class = "block">
             <p>{grocery.name}</p>
@@ -25,3 +20,19 @@ return(
 }
 
 export default GroceryList
+
+/* 
+                <h1>Shopping List</h1>
+                <button id="reset">Reset</button>
+                <button id="clear">Clear</button>
+                <br></br>
+                <br></br>
+                {groceryArray.map((grocery) => (
+                    <div class="block">
+                        <p>{grocery.name}</p>
+                        <p>{grocery.quantity}{grocery.unit}</p>
+                        <button id="buy">Buy</button>
+                        <button id="remove">Remove</button>
+                    </div>
+                ))}
+*/
