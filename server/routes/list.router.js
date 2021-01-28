@@ -55,10 +55,9 @@ router.put('/buy/:id', (req, res) => {
   })
 })
 
-/*router.put("/clear", (req, res) => {
+router.put("/reset", (req, res) => {
  
-  console.log("Clear cart of all selections");
-
+  console.log("Reset shopping list");
   const queryText = `
   UPDATE "groceries"
   SET "purchased" = false
@@ -72,7 +71,21 @@ router.put('/buy/:id', (req, res) => {
       console.log(error);
       res.sendStatus(500);
     });
-}); */
+}); 
+
+router.delete("/clear", (req, res) => {
+  console.log("Clear shopping history");
+  const queryText = `DELETE FROM "groceries";`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); 
 
 
 module.exports = router;
