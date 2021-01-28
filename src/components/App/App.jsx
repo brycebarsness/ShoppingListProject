@@ -71,6 +71,20 @@ function App() {
         })
     }
  
+    const deleteShoppingHistory = () => {
+    console.log("Deleting Shopping History");
+    axios
+      .delete(`/list/clear`)
+      .then((response) => {
+        console.log(response);
+        fetchGroceries();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }; 
+
+
     return (
         <div className="App">
             <main>
