@@ -3,12 +3,12 @@ function addItemForm(props) {
     return(
         <form onSubmit={props.addItem}>
             <label htmlFor="itemInput">Item:</label>
-            <input id="itemNameInput" value={props.newItemName}
+            <input id="itemNameInput" value={props.newItemName} onChange={(event) =>{props.setNewItemName(event.target.value)}}
             required></input>
             <label htmlFor="quantityInput">Quantity</label>
-            <input id="quantityInput" value={props.newItemQuantity} required></input> 
+            <input id="quantityInput" value={props.newItemQuantity} onChange={(event) =>{props.setNewItemQuantity(event.target.value)}} required></input> 
             <label htmlFor="unitInput">Unit</label>
-            <input id="unitInput" value={props.newItemUnit} required></input> 
+            <input id="unitInput" value={props.newItemUnit} onChange={(event) =>{props.setNewItemUnit(event.target.value)}} required></input> 
             <button type="submit">Save</button>
         </form>
     );
