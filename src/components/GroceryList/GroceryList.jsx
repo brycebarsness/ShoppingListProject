@@ -10,9 +10,7 @@ return(
         <div class = "block">
             <p>{grocery.name}</p>
             <p>{grocery.quantity}{grocery.unit}</p>
-
-            {grocery.purchase ? 
-            <p>Purchased</p> :
+            {grocery.purchased === true ?  <p>Purchased</p> :
             <div> 
             <button id="buy" onClick = {() => setPurchased(grocery.id)}>Buy</button>
             <button id="remove" onClick= {() => deleteItem(grocery.id)}>Remove</button>
