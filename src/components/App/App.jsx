@@ -18,12 +18,13 @@ function App() {
         console.log('in useEffect')
         fetchGroceries();
     }, []);
-    
+
     //DELETE request
-    const deleteItem = (event) => {
+    const deleteItem = (itemId) => {
+
         axios({
             method: 'DELETE',
-            url: `/list/${id}`
+            url: `/list/${itemId}`
         }).then((response) => {
             fetchGroceries();
         })
@@ -74,6 +75,7 @@ function App() {
             />
             <GroceryList 
             groceryArray={groceryArray}
+            deleteItem={deleteItem}
             />
 
             
