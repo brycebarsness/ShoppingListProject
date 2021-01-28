@@ -59,6 +59,17 @@ function App() {
         }).catch((error) => {
             console.log(error)
         })}
+    //put request
+    const putPurchase = (event) => {
+        const purchasedId = $(event.target).data('');
+        console.log(`Purchased Item`);
+        axios({
+            method: 'PUT',
+            url: `/buy/${purchasedId}`,
+        }).then((response) => {
+            fetchGroceries();
+        })
+    }
  
     return (
         <div className="App">
