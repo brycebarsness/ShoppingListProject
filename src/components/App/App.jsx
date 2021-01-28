@@ -59,22 +59,11 @@ function App() {
         }).catch((error) => {
             console.log(error)
         })}
-
-    //put request
-    const setPurchased = (itemId) => {
-        console.log(`Purchased Item`, itemId);
-        axios({
-            method: 'PUT',
-            url: `/list/buy/${itemId}`,
-        }).then((response) => {
-            fetchGroceries();
-        })
-    }
  
     const deleteShoppingHistory = () => {
     console.log("Deleting Shopping History");
     axios
-      .delete(`/list/clear`)
+      .delete(`/list`)
       .then((response) => {
         console.log(response);
         fetchGroceries();
@@ -101,7 +90,6 @@ function App() {
             <GroceryList 
             groceryArray={groceryArray}
             deleteItem={deleteItem}
-            setPurchased={setPurchased}
             />
 
             

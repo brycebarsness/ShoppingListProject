@@ -73,7 +73,7 @@ router.put("/reset", (req, res) => {
     });
 }); 
 
-router.delete("/clear", (req, res) => {
+router.delete(`/`, (req, res) => {
   console.log("Clear shopping history");
   const queryText = `DELETE FROM "groceries";`;
   pool
