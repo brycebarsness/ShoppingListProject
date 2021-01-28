@@ -3,9 +3,7 @@ import './GroceryList.css';
 function GroceryList({groceryArray, deleteItem, setPurchased, deleteShoppingHistory, resetShoppingCart}){
     
 return(
-   
     <>
-
         <h1>Shopping List</h1>
         <button id="reset" onClick = {() => resetShoppingCart()}>Reset</button>
         <button id="clear" onClick= {() => deleteShoppingHistory()}>Clear</button>
