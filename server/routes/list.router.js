@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
     });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/delete:id', (req, res) => {
     let id = req.params.id
     console.log('Deleting item number', id);
     
