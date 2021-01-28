@@ -28,8 +28,6 @@ function App() {
         }).then((response) => {
             fetchGroceries();
         })
-
-        
     }
 
     //POSTS request
@@ -85,7 +83,6 @@ function App() {
     axios
       .delete(`/list/clear`)
       .then((response) => {
-        console.log(response);
         fetchGroceries();
       })
       .catch((err) => {
