@@ -7,8 +7,8 @@ router.post('/', (req,res) => {
     const item = req.body
     console.log(req.body);
     const queryText  = `INSERT INTO "groceries" ("name", "quantity", "unit")
-                    VALUES (${item.name}, ${item.quantity}, ${item.unit});`;
-    console.log(queryText);
+                    VALUES ($1, $2, $3);`;
+    console.log(queryText, [item.name, item.quantity, item.unit]);
     pool.query(queryText)
     .then((result) => {
         console.log('Added Item to database', item);
