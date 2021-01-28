@@ -1,7 +1,8 @@
 import React from 'react';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../Header/Header.jsx'
 import './App.css';
+import axios from 'axios';
 
 
 function App() {
@@ -17,11 +18,10 @@ function App() {
         axios.get('/list').then((response) => {
             console.log('This is the Grocery List From Database', response.data);
             setGroceryArray(response.data);
-
         }).catch((error) => {
             console.log(error)
-        })
-
+        })}
+ 
     return (
         <div className="App">
             <Header />
@@ -31,5 +31,5 @@ function App() {
         </div>
     );
 }
-}
+
 export default App;
