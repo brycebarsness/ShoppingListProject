@@ -24,7 +24,7 @@ function App() {
 
         axios({
             method: 'DELETE',
-            url: `/list/${itemId}`
+            url: `/list/delete${itemId}`
         }).then((response) => {
             fetchGroceries();
         })
@@ -59,7 +59,31 @@ function App() {
         }).catch((error) => {
             console.log(error)
         })}
+<<<<<<< HEAD
  
+=======
+
+    //put request
+    const setPurchased = (itemId) => {
+        console.log(`Purchased Item`, itemId);
+        axios({
+            method: 'PUT',
+            url: `/list/buy/${itemId}`,
+        }).then((response) => {
+            fetchGroceries();
+        })
+    }
+
+    //resets all items from purchased from true to false
+    const resetShoppingCart = () => {
+        axios({
+            method: 'PUT',
+            url: `/list/reset`
+        }).then((response) => {fetchGroceries();}
+        )
+    }
+    //
+>>>>>>> e95ba6b678fbbaa405eb5985fcaf70925283c2d3
     const deleteShoppingHistory = () => {
     console.log("Deleting Shopping History");
     axios
@@ -90,6 +114,12 @@ function App() {
             <GroceryList 
             groceryArray={groceryArray}
             deleteItem={deleteItem}
+<<<<<<< HEAD
+=======
+            setPurchased={setPurchased}
+            deleteShoppingHistory={deleteShoppingHistory}
+            resetShoppingCart={resetShoppingCart}
+>>>>>>> e95ba6b678fbbaa405eb5985fcaf70925283c2d3
             />
 
             
