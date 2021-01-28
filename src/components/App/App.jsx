@@ -19,6 +19,19 @@ function App() {
         fetchGroceries();
     }, []);
 
+    //DELETE request
+    const deleteItem = (itemId) => {
+
+        axios({
+            method: 'DELETE',
+            url: `/list/${itemId}`
+        }).then((response) => {
+            fetchGroceries();
+        })
+
+        
+    }
+
     //POSTS request
     const addItem = (event) => {
         event.preventDefault();
@@ -62,6 +75,7 @@ function App() {
             />
             <GroceryList 
             groceryArray={groceryArray}
+            deleteItem={deleteItem}
             />
 
             
