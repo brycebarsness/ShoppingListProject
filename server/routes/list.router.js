@@ -5,9 +5,11 @@ const pool = require('../modules/pool.js');
 // TODO - Add routes here...
 router.post('/', (req,res) => {
     const item = req.body
+    console.log(req.body);
     const queryText  = `INSERT INTO "groceries" ("name", "quantity", "unit")
-                    VALUES ($1, $2, $3);`;
-    pool.query(queryText, [item.name, item.quantity, item.unit])
+                    VALUES (${item.name}, ${item.quantity}, ${item.unit});`;
+    console.log(queryText);
+    pool.query(queryText)
     .then((result) => {
         console.log('Added Item to database', item);
         res.sendStatus(201);

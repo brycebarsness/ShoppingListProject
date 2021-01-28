@@ -7,7 +7,7 @@ function addItemForm(props) {
             required></input>
             <label htmlFor="quantityInput">Quantity</label>
             <input id="quantityInput" value={props.newItemQuantity} required></input> 
-            <label htmlFor="unitInput">Quantity</label>
+            <label htmlFor="unitInput">Unit</label>
             <input id="unitInput" value={props.newItemUnit} required></input> 
             <button type="submit">Save</button>
         </form>
