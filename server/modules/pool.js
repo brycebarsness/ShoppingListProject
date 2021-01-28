@@ -7,6 +7,8 @@ const Pool = pg.Pool;
 const pool = new Pool({
     database: 'fs-react-shopping', // database name (this will change)
     host: 'localhost', // where to find the database
+    user: 'postgres',       //this might be different, if you use process.env.DB_USERNAME with a .env file and npm install dotenv
+    password: 'password',    //this too 
     port: 5432,        // port for finding the database
     max: 10,           // max number of connections for the pool
     idleTimeoutMillis: 30000 // 30 seconds before timeout/cancel query
