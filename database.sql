@@ -16,5 +16,3 @@ INSERT INTO "groceries" ("name", "quantity", "unit") VALUES('bread', 2, '1 loaf'
 INSERT INTO "groceries" ("name", "quantity", "unit") VALUES('Milk', 2, '1 gallon');
 INSERT INTO "groceries" ("name", "quantity", "unit") VALUES('Sliced Almonds', 2, '2 cups');
 INSERT INTO "groceries" ("name", "quantity", "unit", "purchased") VALUES('Bananas', 3, '1 bunch', true);
-
-

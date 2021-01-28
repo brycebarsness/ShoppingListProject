@@ -24,7 +24,7 @@ function App() {
 
         axios({
             method: 'DELETE',
-            url: `/list/${itemId}`
+            url: `/list/delete${itemId}`
         }).then((response) => {
             fetchGroceries();
         })
