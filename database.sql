@@ -9,14 +9,6 @@ CREATE TABLE "groceries" (
     "purchased" bool DEFAULT false
 );
 
-CREATE TABLE "groceries" ( 
-    "id" serial primary key,  
-    "name" varchar(80) not null,  
-    "quantity" decimal not null, 
-    "unit" varchar(80), 
-    "purchased" bool DEFAULT false
-);
-
 SELECT * FROM "groceries";
 
 INSERT INTO "groceries" ("name", "quantity", "unit") VALUES('apples', 1, '5lbs');

@@ -70,7 +70,16 @@ function App() {
             fetchGroceries();
         })
     }
- 
+
+    //resets all items from purchased from true to false
+    const resetShoppingCart = () => {
+        axios({
+            method: 'PUT',
+            url: `/list/reset`
+        }).then((response) => {fetchGroceries();}
+        )
+    }
+    //
     const deleteShoppingHistory = () => {
     console.log("Deleting Shopping History");
     axios
@@ -102,6 +111,8 @@ function App() {
             groceryArray={groceryArray}
             deleteItem={deleteItem}
             setPurchased={setPurchased}
+            deleteShoppingHistory={deleteShoppingHistory}
+            resetShoppingCart={resetShoppingCart}
             />
 
             
