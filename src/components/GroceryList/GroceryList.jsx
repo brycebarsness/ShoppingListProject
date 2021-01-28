@@ -1,6 +1,6 @@
 import './GroceryList.css';
 
-function GroceryList({groceryArray, deleteItem}){
+function GroceryList({groceryArray, deleteItem, setPurchased}){
     
 return(
    
@@ -12,15 +12,12 @@ return(
             <p>{grocery.quantity}{grocery.unit}</p>
 
             {grocery.purchase ? 
-            <p>Purchased</p>:
+            <p>Purchased</p> :
             <div> 
-                <button data-buyid={grocery.id}>Buy</button>
-                <button data-removeid={grocery.id}>Remove</button>
+            <button id="buy" onClick = {() => setPurchased(grocery.id)}>Buy</button>
+            <button id="remove" onClick= {() => deleteItem(grocery.id)}>Remove</button>
             </div>
             }
-            <button id="buy">Buy</button>
-            <button id="remove" onClick= {() => deleteItem(grocery.id)}>Remove</button>
-
         </div>
              ))}
     </>

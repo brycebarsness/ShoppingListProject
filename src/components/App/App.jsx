@@ -59,13 +59,13 @@ function App() {
         }).catch((error) => {
             console.log(error)
         })}
+
     //put request
-    const putPurchase = (event) => {
-        const purchasedId = $(event.target).data('');
-        console.log(`Purchased Item`);
+    const setPurchased = (itemId) => {
+        console.log(`Purchased Item`, itemId);
         axios({
             method: 'PUT',
-            url: `/buy/${purchasedId}`,
+            url: `/list/buy/${itemId}`,
         }).then((response) => {
             fetchGroceries();
         })
@@ -87,6 +87,7 @@ function App() {
             <GroceryList 
             groceryArray={groceryArray}
             deleteItem={deleteItem}
+            setPurchased={setPurchased}
             />
 
             
