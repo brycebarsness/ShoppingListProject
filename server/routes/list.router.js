@@ -5,7 +5,7 @@ const pool = require('../modules/pool.js');
 // TODO - Add routes here...
 router.post('/', (req,res) => {
     const item = req.body
-    const queryText  = `INSERT INTO groceries ("name", "quantity", "unit")
+    const queryText  = `INSERT INTO "groceries" ("name", "quantity", "unit")
                     VALUES ($1, $2, $3);`;
     pool.query(queryText, [item.name, item.quantity, item.unit])
     .then((result) => {
@@ -29,5 +29,53 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     });
   });
+
+  router.delete('/:id', (req, res) => {
+    let id = req.params.id
+    console.log('Deleting item number', id);
+    
+    let queryText = `DELETE FROM "groceries"
+                    WHERE "id" = $1`
+
+    pool.query(queryText, [id]).then((results) => {
+        console.log(results.rows);
+        res.sendStatus(204)
+    })
+})
+
+router.put('/buy/:id', (req, res) => {
+  let id = req.params.id
+  console.log('Purchasing Item number: ', id);
+  
+  let queryText = `
+  UPDATE "groceries"
+  SET "purchased" = true
+  WHERE "id" = $1;`;
+
+  pool.query(queryText, [id]).then((results) => {
+      console.log(results.rows);
+      res.sendStatus(204)
+  })
+})
+
+/*router.put("/clear", (req, res) => {
+ 
+  console.log("Clear cart of all selections");
+
+  const queryText = `
+  UPDATE "groceries"
+  SET "purchased" = false
+  WHERE "purchased" = true;`;
+
+  pool.query(queryText)
+    .then((result) => {
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+    });
+}); */
+
 
 module.exports = router;
