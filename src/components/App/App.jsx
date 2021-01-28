@@ -65,7 +65,8 @@ function App() {
                 <h1>Shopping List</h1>
                 <button id="reset">Reset</button>
                 <button id="clear">Clear</button>
-             
+                <br></br>
+                <br></br>
                 {groceryArray.map((grocery) => (
                     <div class="block">
                         <p>{grocery.name}</p>
