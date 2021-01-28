@@ -18,6 +18,18 @@ function App() {
         console.log('in useEffect')
         fetchGroceries();
     }, []);
+    
+    //DELETE request
+    const deleteItem = (event) => {
+        axios({
+            method: 'DELETE',
+            url: `/list/${id}`
+        }).then((response) => {
+            fetchGroceries();
+        })
+
+        
+    }
 
     //POSTS request
     const addItem = (event) => {
