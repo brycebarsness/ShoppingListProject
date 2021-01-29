@@ -11,11 +11,13 @@ function App() {
     let [groceryArray, setGroceryArray] = useState([]);
     //these are used in the form
     let [newItemName, setNewItemName] = useState('');
-    let [newItemQuantity, setNewItemQuantity] = useState(0);
+    let [newItemQuantity, setNewItemQuantity] = useState('');
     let [newItemUnit, setNewItemUnit] = useState('');
+    let [editMode, setEditMode] = useState(false);
+    let [idOfItem, setIdOfItem] = useState(0);
+
     // On Load, do this thing
     useEffect(() => {
-        console.log('in useEffect')
         fetchGroceries();
     }, []);
 
@@ -52,12 +54,13 @@ function App() {
     // GET request
     const fetchGroceries = () => {
         axios.get('/list').then((response) => {
-            console.log('This is the Grocery List From Database', response.data);
             setGroceryArray(response.data);
         }).catch((error) => {
             console.log(error)
-        })}
-     //put request
+        })
+    }
+
+    //put request
     const setPurchased = (itemId) => {
         console.log(`Purchased Item`, itemId);
         axios({
@@ -73,45 +76,87 @@ function App() {
         axios({
             method: 'PUT',
             url: `/list/reset`
-        }).then((response) => {fetchGroceries();}
+        }).then((response) => { fetchGroceries(); }
         )
     }
-
+    // delete all shopping history
     const deleteShoppingHistory = () => {
-    console.log("Deleting Shopping History");
-    axios
-      .delete(`/list`)
-      .then((response) => {
-        fetchGroceries();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }; 
+        console.log("Deleting Shopping History");
+        axios
+            .delete(`/list/clear`)
+            .then((response) => {
+                fetchGroceries();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
+    //edit an item
+    const getOneItem = (groceryId) => {
+        console.log("editing an item", groceryId);
+        setEditMode(true);
+        axios.get(`/list/${groceryId}`).then((response) => {
+            setNewItemName(response.data[0].name);
+            setNewItemQuantity(response.data[0].quantity);
+            setNewItemUnit(response.data[0].unit);
+        }).catch((error) => {
+            console.log(error)
+        });
+    };
+
+    //update an existing item after editing
+    const updateItem = (event) => {
+        event.preventDefault();
+        console.log(`updating Item`, idOfItem);
+        axios({
+            method: 'PUT',
+            url: `/list/update/${idOfItem}`,
+            data: {
+                name: newItemName,
+                quantity: newItemQuantity,
+                unit: newItemUnit
+            }
+        }).then((response) => {
+            setEditMode(false);
+            fetchGroceries();
+            setNewItemName('');
+            setNewItemQuantity(0);
+            setNewItemUnit('');
+        })
+    }
 
     return (
         <div className="App">
             <main>
-            <Header />
-            <AddItemForm 
-                addItem={addItem}
-                newItemName={newItemName}
-                setNewItemName={setNewItemName}
-                newItemQuantity={newItemQuantity}
-                setNewItemQuantity={setNewItemQuantity}
-                newItemUnit={newItemUnit}
-                setNewItemUnit={setNewItemUnit}
-            />
-            <GroceryList 
-            groceryArray={groceryArray}
-            deleteItem={deleteItem}
-            setPurchased={setPurchased}
-            deleteShoppingHistory={deleteShoppingHistory}
-            resetShoppingCart={resetShoppingCart}
-            />
+                <Header />
+                <AddItemForm
+                    addItem={addItem}
+                    newItemName={newItemName}
+                    setNewItemName={setNewItemName}
+                    newItemQuantity={newItemQuantity}
+                    setNewItemQuantity={setNewItemQuantity}
+                    newItemUnit={newItemUnit}
+                    setNewItemUnit={setNewItemUnit}
+                    editMode={editMode}
+                    setEditMode={setEditMode}
+                    updateItem={updateItem}
+                    setIdOfItem={setIdOfItem}
+                    idOfItem={idOfItem}
 
-            
+                />
+                <GroceryList
+                    groceryArray={groceryArray}
+                    deleteItem={deleteItem}
+                    setPurchased={setPurchased}
+                    deleteShoppingHistory={deleteShoppingHistory}
+                    resetShoppingCart={resetShoppingCart}
+                    getOneItem={getOneItem}
+                    editMode={editMode}
+                    setIdOfItem={setIdOfItem}
+                />
+
+
             </main>
         </div>
     );

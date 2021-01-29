@@ -46,7 +46,6 @@ The `Reset` button should clear the purchased status from all items, allowing th
 
 - Aim to ensure that everyone is always able to move forward on a task (or at least part of a task) without waiting for someone else to complete their work. For example, by setting up test data in the database, team members can work on getting items & adding items at the same time. Also, by starting work on the server side code to do a delete while the UI is being created allows work to move forward before there is a place to click a button. 
 
-
 ## Stretch Features 
 
 - Update this Readme file to use the

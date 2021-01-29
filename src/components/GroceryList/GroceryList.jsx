@@ -1,6 +1,6 @@
 import './GroceryList.css';
 
-function GroceryList({groceryArray, deleteItem, setPurchased, deleteShoppingHistory, resetShoppingCart}){
+function GroceryList({setIdOfItem, getOneItem, groceryArray, deleteItem, setPurchased, deleteShoppingHistory, resetShoppingCart}){
     
 return(
     <>
@@ -9,17 +9,23 @@ return(
         <button id="clear" onClick= {() => deleteShoppingHistory()}>Clear</button>
         <br />
         {groceryArray.map((grocery) =>(
-        <div class = "block">
-            <p>{grocery.name}</p>
+            
+        <div key={grocery.id} className = {grocery.purchased ? "block2":"block1"}>
+            <p >{grocery.name}</p>
             <p>{grocery.quantity}{grocery.unit}</p>
             {grocery.purchased ? 
             <p>Purchased</p> :
             <div> 
             <button id="buy" onClick = {() => setPurchased(grocery.id)}>Buy</button>
             <button id="remove" onClick= {() => deleteItem(grocery.id)}>Remove</button>
+            {<button id="edit" onClick={() => {
+                setIdOfItem(grocery.id);
+                getOneItem(grocery.id);}
+                }>Edit</button>}
             </div>
             }
         </div>
+        
              ))}
     </>)}
 
