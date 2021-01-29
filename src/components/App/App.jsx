@@ -11,7 +11,7 @@ function App() {
     let [groceryArray, setGroceryArray] = useState([]);
     //these are used in the form
     let [newItemName, setNewItemName] = useState('');
-    let [newItemQuantity, setNewItemQuantity] = useState(0);
+    let [newItemQuantity, setNewItemQuantity] = useState('');
     let [newItemUnit, setNewItemUnit] = useState('');
     let [editMode, setEditMode] = useState(false);
     let [idOfItem, setIdOfItem] = useState(0);
