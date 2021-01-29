@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Header from '../Header/Header.jsx'
 import './App.css';
+import Swal from 'sweetalert2'
 import axios from 'axios';
 import GroceryList from '../GroceryList/GroceryList.jsx';
 import AddItemForm from '../AddItemForm/AddItemForm';
@@ -32,14 +33,12 @@ function App() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete this item!'
           })
-        then((result) => {
-              // if the Yes, delete this item! button is clicked run axios.delete
+        .then((result) => {
             if (result.isConfirmed) {
-                // axios delete request on click of Yes, delete this item!
-                axios.delete(`/shopping/${id}`).then(response => {
-                    console.log(`in removeItem with item id: `, id);
-                    fetchItems();
-                }).catch(error => {
+                axios.delete(`/list/delete${itemId}`).then(response => {
+               fetchGroceries();
+                })
+        .catch(error => {
                     console.log(error);
                 })
                 // alert for successful delete
@@ -51,14 +50,7 @@ function App() {
             }
           })
         }
-
-        axios({
-            method: 'DELETE',
-            url: `/list/delete${itemId}`
-        }).then((response) => {
-            fetchGroceries();
-        })
-    }
+    
 
     //POSTS request
     const addItem = (event) => {
@@ -109,16 +101,32 @@ function App() {
     }
     // delete all shopping history
     const deleteShoppingHistory = () => {
-        console.log("Deleting Shopping History");
-        axios
-            .delete(`/list/clear`)
+         Swal.fire({
+            title: 'Are you sure you want to delete all your items?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it! '
+            }).then((result) => {
+                if (result.isConfirmed){ 
+             axios.delete(`/list/clear`)
             .then((response) => {
-                fetchGroceries();
+            fetchGroceries();
             })
             .catch((err) => {
                 console.log(err);
             });
-    };
+              Swal.fire(
+                'Deleted!',
+                'All items have been deleted.',
+                'success'
+              )
+            }
+          })
+        }
+    
 
     //edit an item
     const getOneItem = (groceryId) => {
