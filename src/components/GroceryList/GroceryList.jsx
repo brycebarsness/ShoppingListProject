@@ -17,6 +17,7 @@ return(
             <div> 
             <button id="buy" onClick = {() => setPurchased(grocery.id)}>Buy</button>
             <button id="remove" onClick= {() => deleteItem(grocery.id)}>Remove</button>
+            {/* <button id="edit" onCLick={() => editItem(grocery.id)}>Edit</button> */}
             </div>
             }
         </div>
