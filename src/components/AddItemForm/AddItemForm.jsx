@@ -18,4 +18,3 @@ function addItemForm(props) {
 export default addItemForm;
 
 //TODO addItem pass in as props
-//newItem props

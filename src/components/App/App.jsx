@@ -77,7 +77,7 @@ function App() {
         }).then((response) => {fetchGroceries();}
         )
     }
-    //
+    // delete all shopping history
     const deleteShoppingHistory = () => {
     console.log("Deleting Shopping History");
     axios
