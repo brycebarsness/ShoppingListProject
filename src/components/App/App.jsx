@@ -57,11 +57,7 @@ function App() {
         }).catch((error) => {
             console.log(error)
         })}
-<<<<<<< HEAD
- 
-=======
-
-    //put request
+     //put request
     const setPurchased = (itemId) => {
         console.log(`Purchased Item`, itemId);
         axios({
@@ -80,8 +76,7 @@ function App() {
         }).then((response) => {fetchGroceries();}
         )
     }
-    //
->>>>>>> e95ba6b678fbbaa405eb5985fcaf70925283c2d3
+
     const deleteShoppingHistory = () => {
     console.log("Deleting Shopping History");
     axios
@@ -111,12 +106,9 @@ function App() {
             <GroceryList 
             groceryArray={groceryArray}
             deleteItem={deleteItem}
-<<<<<<< HEAD
-=======
             setPurchased={setPurchased}
             deleteShoppingHistory={deleteShoppingHistory}
             resetShoppingCart={resetShoppingCart}
->>>>>>> e95ba6b678fbbaa405eb5985fcaf70925283c2d3
             />
 
             

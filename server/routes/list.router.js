@@ -4,6 +4,15 @@ const pool = require('../modules/pool.js');
 
 router.post('/', (req,res) => {
     const item = req.body
+    // if we are missing name, quantity, or unit, send back
+    // a 400 instead and bail out early
+    if (!item.name || !item.quantity || !item.unit) {
+        res.status(400).send('Sorry! Invalid request, please complete all required input fields');
+        return;
+    }
+    if(item.name.length > 5){
+      res.status(400).send('Sorry! Item name is too long- must be 80 charecters or less')
+    };
     const queryText  = `INSERT INTO "groceries" ("name", "quantity", "unit") VALUES ($1, $2, $3);`;
     pool.query(queryText, [item.name, item.quantity, item.unit])
     .then((result) => {
