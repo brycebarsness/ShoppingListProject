@@ -11,7 +11,7 @@ return(
         <button id="clear" onClick= {() => deleteShoppingHistory()}>Clear</button>
         <br />
         {groceryArray.map((grocery) =>(
-        <div class = "block">
+        <div class = {grocery.purchased? "block2":"block1"}>
             <p>{grocery.name}</p>
             <p>{grocery.quantity}{grocery.unit}</p>
             {grocery.purchased ? 
