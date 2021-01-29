@@ -1,4 +1,4 @@
-.block{
+.block1{
 border-radius: 25px;
   border: 2px solid gray;
   padding: 20px;
@@ -13,4 +13,14 @@ button {
 }
 
 
-
+.block2{
+  background-color: gray;
+border-radius: 25px;
+  border: 2px solid gray;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  text-align: center;
+  margin: 10px;
+  display: inline-block;
+}
